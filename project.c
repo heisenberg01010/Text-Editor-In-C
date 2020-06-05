@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
-int line, col;
+#include<string.h>
+
 int i,j,ch;
 char fn[20],e,c,name[64];
 FILE *fp1,*fp2,*fp;
@@ -43,110 +44,128 @@ int main()
 
 return 0;
 }
-	void NewFile()
-		{
-		printf("\n\tEnter the name of the file to be created: ");
-		scanf("%s", name);
-		fp1=fopen(name,"w");
-		printf("\n\tEnter the text and press '.' to save\n\n\t");
-		while(1)
+
+void NewFile()
+{
+	printf("\n\tEnter the name of the file to be created: ");
+	scanf("%s", name);
+	fp1=fopen(name,"w");
+	printf("\n\tEnter the text and press '.' to save\n\n\t");
+
+	while(1)
 		{
 			c=getchar();
 			fputc(c,fp1);
-				if(c == '.')
-				{
+
+		if(c == '.')
+			{
 				fclose(fp1);
 				break;
-				}
+			}
+
 		}
-		}
+}
 
 void comparison()
 {
+	int line = 1, col = 0;
+	  
+
 	printf("\n\tEnter the first file: ");
 		scanf("%s", name);
 		fp1=fopen(name,"r");
 	printf("\n\tEnter the second file: ");
 		scanf("%s", name);
-		fp2=fopen(fn,"r");	
-		
-	 line = 1;
-     col  = 0;
-	do{	
-	c = getc(fp1);
-	e = getc(fp2);
+		fp2=fopen(fn,"r");
 
-	if (c == '\n')
-        {
-            line += 1;
-            col = 0;
-        }
-	if (c != e)
-		printf("Files not equal");
-	else
-		col += 1;
-	}while(c != EOF && e != EOF);
+	char ch1 = getc(fp1); 
+    char ch2 = getc(fp2);
+	 
+	while (!feof(fp1) && !feof(fp2)) 
+    { 
+        col++; 
+  
+        if (ch1 == '\n' && ch2 == '\n') 
+        { 
+            line++; 
+            col = 0; 
+        } 
+  
 
-	if (c == EOF && e == EOF)
-        printf("Files are equal");
-    else
-        printf("Files not equal");
+        if (ch1 != ch2) 
+        { 
+             
+            printf("Line Number : %d \t
+                Position : %d \n", line, col); 
+        } 
+  
+        ch1 = getc(fp1); 
+        ch2 = getc(fp2); 
+    } 
+  
+    
 }
 
 
 void Display()
 {
-printf("\n\tEnter the file name: ");
-scanf("%s",fn);
-fp1=fopen(fn,"r");
-if(fp1==NULL)
-{
-printf("\n\tFile not found!");
-fclose(fp1);
-printf("\n\n\tPress any key to continue\n");
-}
-while(!feof(fp1))
-{
-c=getc(fp1);
-printf("%c",c);
-}
+	printf("\n\tEnter the file name: ");
+	scanf("%s",fn);
+	fp1=fopen(fn,"r");
+
+	if(fp1==NULL)
+	{
+		printf("\n\tFile not found!");
+		fclose(fp1);
+		printf("\n\n\tPress any key to continue\n");
+	}
+	while(!feof(fp1))
+	{
+		c=getc(fp1);
+		printf("%c",c);
+	}
 
 }
+
 void Copy()
 {
-printf("\n\tEnter the new filename to copy:  ");
-scanf("%s",fn);
-printf("\n\tEnter the filename from which to copy: ");
-scanf("%s", name);
-fp1=fopen(name,"r");
-fp2=fopen(fn,"w");
-while(!feof(fp1))
-{
-c=getc(fp1);
-putc(c,fp2);
-}
+	printf("\n\tEnter the new filename to copy:  ");
+	scanf("%s",fn);
+	printf("\n\tEnter the filename from which to copy: ");
+	scanf("%s", name);
+	fp1=fopen(name,"r");
+	fp2=fopen(fn,"w");
+
+	while(!feof(fp1))
+	{
+		c=getc(fp1);
+		putc(c,fp2);
+	}
+
 printf("\n\tFile has been copied successfully");
 fclose(fp2);
 }
 
 void Delete()
 {
-printf("\n\tEnter the file name: ");
-scanf("%s",fn);
-fp1=fopen(fn,"r");
-if(fp1==NULL)
-{
-printf("\n\tFile not found!");
-goto end2;
-}
-fclose(fp1);
-if(remove(fn)==0)
-{
-printf("\n\n\tFile has been deleted successfully!");
-goto end2;
-}
-else
-printf("\n\tError!\n");
-end2: printf("\n\n\tPress any key to continue\n");
+	printf("\n\tEnter the file name: ");
+	scanf("%s",fn);
+	fp1=fopen(fn,"r");
+
+	if(fp1==NULL)
+	{
+		printf("\n\tFile not found!");
+		goto end2;
+	}
+	fclose(fp1);
+
+	if(remove(fn)==0)
+	{
+		printf("\n\n\tFile has been deleted successfully!");
+		goto end2;
+	}
+	else
+		printf("\n\tError!\n");
+		end2: printf("\n\n\tPress any key to continue\n");
 }
 
