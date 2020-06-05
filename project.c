@@ -73,15 +73,22 @@ void comparison()
 
 	printf("\n\tEnter the first file: ");
 		scanf("%s", name);
-		fp1=fopen(name,"r");
+		fp1 = fopen(name,"r");
 	printf("\n\tEnter the second file: ");
 		scanf("%s", name);
-		fp2=fopen(fn,"r");
+		fp2 = fopen(fn,"r");
 
+	
+
+    if (fp1 == NULL || fp2 == NULL) 
+    { 
+       printf("Error : Files not open\n"); 
+       exit(0); 
+    } 
 	char ch1 = getc(fp1); 
     char ch2 = getc(fp2);
-	 
-	while (!feof(fp1) && !feof(fp2)) 
+
+	while (ch1 != EOF && ch2 != EOF) 
     { 
         col++; 
   
@@ -95,17 +102,15 @@ void comparison()
         if (ch1 != ch2) 
         { 
              
-            printf("Line Number : %d \t
-                Position : %d \n", line, col); 
+            printf("Line Number : %d \t""Position : %d \n", line, col); 
         } 
   
         ch1 = getc(fp1); 
         ch2 = getc(fp2); 
     } 
-  
-    
+fclose(fp1); 
+    fclose(fp2); 
 }
-
 
 void Display()
 {
