@@ -12,7 +12,7 @@ void Modify();
 void NewFile();
 void Copy();
 void Delete();
-void Display();
+void View();
 void comparison();
 
 int main()
@@ -20,7 +20,7 @@ int main()
 	do {
 		printf("\n-------------------------------------------------------------- CP Assign.-----------------------------------------------");
 		printf("\n\n\tMENU:\n\t\n");
-		printf("\n\t1.NEWFILE\t2.DISPLAY\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EXIT\n");
+		printf("\n\t1.NEWFILE\t2.VIEW\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EXIT\n");
 		printf("\n\tEnter your choice: ");
 		scanf("%d",&ch);
 	switch(ch)
@@ -29,7 +29,7 @@ int main()
 			NewFile();
 			break;
 			case 2:
-			Display();
+			View();
 			break;
 			case 3:
 			Copy();
@@ -115,7 +115,7 @@ fclose(fp1);
     fclose(fp2); 
 }
 
-void Display()
+void View()
 {
 	printf("\n\tEnter the file name: ");
 	scanf("%s",fn);
