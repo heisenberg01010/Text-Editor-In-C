@@ -101,7 +101,7 @@ void comparison()
 
         if (ch1 != ch2) 
         { 
-             
+            printf("Files not equal"); 
             printf("Line Number : %d \t""Position : %d \n", line, col); 
         } 
   
