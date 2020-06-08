@@ -2,10 +2,13 @@
 #include<stdlib.h>
 #include<string.h>
 
-int i,j,ch;
-char fn[20],e,c,name[64];
+#define BUFFER_SIZE 1000
+
+int ch;
+char fn[64],e,c,name[20];
 FILE *fp1,*fp2,*fp;
 
+void Modify();
 void NewFile();
 void Copy();
 void Delete();
@@ -15,7 +18,7 @@ void comparison();
 int main()
 {
 	do {
-		printf("\n\t\t***** TEXT EDITOR *****");
+		printf("\n-------------------------------------------------------------- CP Assign.-----------------------------------------------");
 		printf("\n\n\tMENU:\n\t\n");
 		printf("\n\t1.NEWFILE\t2.DISPLAY\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EXIT\n");
 		printf("\n\tEnter your choice: ");
@@ -82,7 +85,7 @@ void comparison()
 
     if (fp1 == NULL || fp2 == NULL) 
     { 
-       printf("Error : Files not open\n"); 
+       printf("\tError : Files not open\n"); 
        exit(0); 
     } 
 	char ch1 = getc(fp1); 
@@ -101,7 +104,7 @@ void comparison()
 
         if (ch1 != ch2) 
         { 
-            printf("Files not equal"); 
+            printf("Files not equal\n"); 
             printf("Line Number : %d \t""Position : %d \n", line, col); 
         } 
   
@@ -160,17 +163,21 @@ void Delete()
 	if(fp1==NULL)
 	{
 		printf("\n\tFile not found!");
-		goto end2;
+		printf("\n\n\tPress any key to continue\n");
 	}
 	fclose(fp1);
 
 	if(remove(fn)==0)
 	{
 		printf("\n\n\tFile has been deleted successfully!");
-		goto end2;
+		printf("\n\n\tPress any key to continue\n");
 	}
 	else
-		printf("\n\tError!\n");
-		end2: printf("\n\n\tPress any key to continue\n");
+		printf("\n\tError!\n"); 
 }
+
+
+
+
+
 
