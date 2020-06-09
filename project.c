@@ -10,6 +10,7 @@ FILE *fp1,*fp2,*fp;
 
 void Modify();
 void NewFile();
+void SaveAs();
 void Copy();
 void Delete();
 void View();
@@ -21,7 +22,7 @@ int main()
 	do {
 		printf("\n-------------------------------------------------------------- CP Assign.-----------------------------------------------");
 		printf("\n\n\tMENU:\n\t\n");
-		printf("\n\t1.NEWFILE\t2.VIEW\t\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EDIT\t\t7.EXIT\n");
+		printf("\n\t1.NEWFILE\t2.VIEW\t\t3.COPY\t\t4.DELETE\t5.COMPARISON\t\t6.EDIT\t\t7.SAVEAS\t8.EXIT\n");
 		printf("\n\tEnter your choice: ");
 		scanf("%d",&ch);
 	switch(ch)
@@ -45,6 +46,9 @@ int main()
 			Edit();
 			break;
 			case 7:
+			SaveAs();
+			break;
+			case 8:
 			exit(0);
 			}
 			}while(1);
@@ -214,6 +218,31 @@ void Edit()
 		}
 }
 
+void SaveAs()
+{
+	printf("\n\tEnter the name of the file to be changed: ");
+	scanf("%s", name);
+	printf("\n\tEnter the new file name: ");
+	scanf("%s", fn);
+
+	ch = rename(name, fn);
+
+	fp1 = fopen(name, "w");
+
+	printf("\n\tpress '.' to save\n\n\t");
+
+	while(1)
+		{
+			c=getchar();
+
+			if(c == '.')
+				{
+					fclose(fp1);
+					break;
+				}
+
+		}
+}
 
 
 
