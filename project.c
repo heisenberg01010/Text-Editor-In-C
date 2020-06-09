@@ -5,7 +5,7 @@
 #define BUFFER_SIZE 1000
 
 int ch;
-char fn[64],e,c,name[20];
+char fn[20],e,c,name[20];
 FILE *fp1,*fp2,*fp;
 
 void Modify();
@@ -14,13 +14,14 @@ void Copy();
 void Delete();
 void View();
 void comparison();
+void Edit();
 
 int main()
 {
 	do {
 		printf("\n-------------------------------------------------------------- CP Assign.-----------------------------------------------");
 		printf("\n\n\tMENU:\n\t\n");
-		printf("\n\t1.NEWFILE\t2.VIEW\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EXIT\n");
+		printf("\n\t1.NEWFILE\t2.VIEW\t\t3.COPY\t\t4.DELETE\t5.COMPARISON\t6.EDIT\t\t7.EXIT\n");
 		printf("\n\tEnter your choice: ");
 		scanf("%d",&ch);
 	switch(ch)
@@ -41,6 +42,9 @@ int main()
 			comparison();
 			break;
 			case 6:
+			Edit();
+			break;
+			case 7:
 			exit(0);
 			}
 			}while(1);
@@ -176,6 +180,39 @@ void Delete()
 		printf("\n\tError!\n"); 
 }
 
+void Edit()
+{
+	printf("\n\tEnter the file name: ");
+	scanf("%s",fn);
+	fp1=fopen(fn,"r+");
+
+	if(fp1==NULL)
+	{
+		printf("\n\tFile not found!");
+		fclose(fp1);
+		printf("\n\n\tPress any key to continue\n");
+	}
+	while(!feof(fp1))
+	{
+		c=getc(fp1);
+		printf("%c",c);
+
+	}
+	printf("\n\tEnter the text and press '.' to save\n\n\t");
+
+	while(1)
+		{
+			c=getchar();
+			fputc(c,fp1);
+
+		if(c == '.')
+			{
+				fclose(fp1);
+				break;
+			}
+
+		}
+}
 
 
 
