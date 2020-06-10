@@ -86,7 +86,7 @@ void comparison()
 		scanf("%s", name);
 		fp1 = fopen(name,"r");
 	printf("\n\tEnter the second file: ");
-		scanf("%s", name);
+		scanf("%s", fn);
 		fp2 = fopen(fn,"r");
 
 	
