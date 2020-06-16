@@ -1,5 +1,5 @@
 # Text-Editor-Using-C
-This a console-based text editor which is totally made using C.
+This a console-based text editor which is completely made using C.
 
 It has following features:
 
